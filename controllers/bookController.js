@@ -4,10 +4,14 @@ class bookController {
   static list(req, res) {
     Book.findAll()
       .then(data => {
-        res.render('./booklist.ejs', { data })
+        let session = req.session.user
+        res.render('./booklist.ejs', { data, session})
       })
       .catch(err => {
-        res.send(err)
+        let session = req.session.user
+        res.render('error',{err,session})
+
+      
       })
   }
 
@@ -23,6 +27,8 @@ class bookController {
         res.send({ data })
       })
       .catch(err => {
+        let session = req.session.user
+        res.render('error',{err,session})
         res.send(err)
       })
   }
@@ -49,6 +55,7 @@ class bookController {
       // })
       .catch(err => {
         res.send(err)
+
       })
   }
 

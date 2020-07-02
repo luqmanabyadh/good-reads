@@ -1,13 +1,28 @@
-const route = require('express').Router()
-
+const router = require('express').Router()
+const LogOutController = require('../controllers/logoutController')
+const registerRoute = require('./register')
 const homeRoute = require('./home')
 const bookRoute = require('./books')
-// const userRoute = require('./user')
+const userRoute = require('./user')
 const loginRoute = require('./login')
 
-route.get('/', homeRoute)
-route.use('/books', bookRoute)
-// route.use('/users', userRoute)
-route.use('/login', loginRoute)
 
-module.exports = route
+function checkSession(req,res,next){
+  if(req.session.user){
+    next()
+  }else{
+    req.app.locals.message = "Harap login Terlebih dahulu"
+    res.redirect('/')  
+  }
+}
+router.get('/logout',LogOutController.out)
+router.get('/', homeRoute)
+router.use('/register',registerRoute)
+router.use('/login', loginRoute)
+router.use('/books', bookRoute)
+
+router.use(checkSession)
+router.use('/users', userRoute)
+
+module.exports = router
+

@@ -3,17 +3,24 @@ const { User, Book, Transaction } = require('../models/index')
 class loginController {
 
   static getLogin(req, res) {
-    res.render('./login.ejs')
+
+    let session = req.session.user
+    res.render('./login.ejs',{session})
   }
 
   static postLogin(req, res) {
-    let { email, password } = req.body  // ini sesuain sama yg ada di data tabelnya mas
-    User.findAll({ email, password })
+    let { email,password } = req.body  
+    User.findAll({
+      where:{email,password}
+    })
       .then(dataUser => {
-        res.redirect('/account', { dataUser })  //ini mengarah ke halaman user yg isi nya menampilkan data user atau profil
+        req.session.user = data
+        req.app.locals.message = "Berhasil login"
+        res.redirect('/')  
       })
       .catch(err => {
-        res.send(err)
+        let session = req.session.user
+        res.render('error',{err,session})
       })
   }
 
