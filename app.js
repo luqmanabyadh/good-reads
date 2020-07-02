@@ -12,6 +12,11 @@ app.use(session({
   saveUninitialized: true,
   cookie: { secure: false }
 }))
+
+app.use(express.urlencoded({ extended: false }))
+app.set('view engine', 'ejs')
+app.use(express.static('public'))
+
 app.use('/', route)
 
 app.listen(port, () => {

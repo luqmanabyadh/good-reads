@@ -3,6 +3,7 @@ const { User, Book, Transaction } = require('../models/index')
 class loginController {
 
   static getLogin(req, res) {
+
     let session = req.session.user
     res.render('./login.ejs',{session})
   }

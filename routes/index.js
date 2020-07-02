@@ -25,3 +25,4 @@ router.use(checkSession)
 router.use('/users', userRoute)
 
 module.exports = router
+
