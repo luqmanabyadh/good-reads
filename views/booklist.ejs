@@ -1,0 +1,30 @@
+<%- include('./partials/header') %>
+<div class="container">
+  <h3>Book List</h3>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Item</th>
+        <th scope="col">Books Name</th>
+        <th scope="col">Stocks</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% data.forEach((el,index) => { %>
+      <tr>
+        <td><img class="gambar" src="<%= el.img_url %>"></td>
+        <td><%= el.booksProfile %> </td>
+        <td><%= el.stocks %> </td>
+        <td>
+          <form action="/account" method="POST">
+            <input name="bookId" value="<%= el.id %>" hidden>
+            <button type="submit" value="<%= el.id %>" class="btn btn-success">Buy Books</button>
+          </form>
+        </td>
+      </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('./partials/footer') %>
