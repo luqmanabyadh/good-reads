@@ -3,7 +3,8 @@ const { User, Book, Transaction } = require('../models/index')
 class loginController {
 
   static getLogin(req, res) {
-    res.render('./login.ejs')
+    let session = req.session.user
+    res.render('./login.ejs',{session})
   }
 
   static postLogin(req, res) {
@@ -17,7 +18,8 @@ class loginController {
         res.redirect('/')  
       })
       .catch(err => {
-        res.send(err)
+        let session = req.session.user
+        res.render('error',{err,session})
       })
   }
 

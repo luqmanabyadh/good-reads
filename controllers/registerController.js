@@ -10,7 +10,7 @@ class RegisterController{
       name,email,password
     })
     .then(data=>{
-      req.app.locals.message = "Berhasil login"
+      req.app.locals.message = "Berhasil Register"
       res.redirect('/')
     })
     .catch(err=>{error,{err}})
