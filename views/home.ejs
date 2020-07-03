@@ -1,0 +1,13 @@
+<%- include('./partials/header'),{session} %>
+<div class="jumbotron">
+  <h2>Welcome to good-reads</h2>
+</div>
+<% if(message){ %>
+  <p><%= message %></p>
+<% } %> 
+<div class="container">
+  <a href="/login" class="btn btn-primary">Login</a>
+  <a href="/register" class="btn btn-primary">Register</a>
+  
+</div>
+<%- include('./partials/footer') %>

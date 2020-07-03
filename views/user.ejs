@@ -1,0 +1,15 @@
+<%- include('./partials/header',{session}) %>
+  <table border="1px">
+    <thead>
+      <th>name</th>
+      <th>email</th>
+      
+    </thead>
+    <% for(let i = 0 ;i<data.length;i++){ %>
+      <tr>
+        <td><%= data[i].name %></td>
+        <td><%= data[i].email %></td>
+      </tr>
+    <% } %> 
+  </table>
+<%- include('./partials/footer') %>
